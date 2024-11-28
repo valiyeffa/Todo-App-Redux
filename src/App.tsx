@@ -2,8 +2,6 @@ import React, { useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { infoType } from './todo.modal';
 import { add, delText, edit } from './slices/todoApp';
-import supabase from './utils/supabase';
-import store from './store';
 
 const App: React.FC = () => {
 
@@ -29,15 +27,6 @@ const App: React.FC = () => {
     setEditingId(null);
     setEditText('');
   };
-
-  const listData = async () => {
-    const { data, error }: any = await supabase.from('TodoApp').select();
-    if (error) {
-      console.log(error);
-    } else {
-      store.dispatch(dataRead(data))
-    }
-  }
 
   return (
     <div className='d-flex align-items-center justify-content-center flex-column'>
